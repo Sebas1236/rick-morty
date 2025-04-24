@@ -65,6 +65,7 @@ export default function CharacterGrid({
           />
         </button>
       </div>
+      <button className={styles.favsButton}>FAVS</button>
       <div className={styles.characterGrid} ref={gridRef}>
         {characters.map((character) => (
           <CharacterCard
