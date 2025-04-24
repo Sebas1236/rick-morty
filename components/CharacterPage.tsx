@@ -1,10 +1,10 @@
-import React, { useRef } from 'react';
-import styles from './CharacterPage.module.css';
-import SearchBar from './SearchBar';
-import SelectedCharacter from './SelectedCharacter';
-import CharacterGrid from './CharacterGrid';
-import { IoIosArrowUp } from 'react-icons/io'; 
-import { Character } from '@/types/types';
+import React, { useRef } from "react";
+import styles from "./CharacterPage.module.css";
+import SearchBar from "./SearchBar";
+import SelectedCharacter from "./SelectedCharacter";
+import CharacterGrid from "./CharacterGrid";
+import { IoIosArrowUp } from "react-icons/io";
+import { Character } from "@/types/types";
 
 interface CharacterPageProps {
   characters: Character[];
@@ -33,13 +33,13 @@ export default function CharacterPage({
 
   const scrollUp = () => {
     if (contentRef.current) {
-      contentRef.current.scrollBy({ top: -100, behavior: 'smooth' });
+      contentRef.current.scrollBy({ top: -100, behavior: "smooth" });
     }
   };
 
   const scrollDown = () => {
     if (contentRef.current) {
-      contentRef.current.scrollBy({ top: 100, behavior: 'smooth' });
+      contentRef.current.scrollBy({ top: 100, behavior: "smooth" });
     }
   };
 
@@ -50,12 +50,29 @@ export default function CharacterPage({
           <button className={styles.scrollButton} onClick={scrollUp}>
             <IoIosArrowUp className={styles.icon} />
           </button>
-          <button className={`${styles.scrollButton} ${styles.downButton}`} onClick={scrollDown}>
-            <IoIosArrowUp className={styles.icon} style={{ transform: 'rotate(180deg)' }} />
+          <button
+            className={`${styles.scrollButton} ${styles.downButton}`}
+            onClick={scrollDown}
+          >
+            <IoIosArrowUp
+              className={styles.icon}
+              style={{ transform: "rotate(180deg)" }}
+            />
           </button>
         </div>
-        <div className={styles.content} ref={contentRef}>
-          <SelectedCharacter selectedCharacter={selectedCharacter} />
+        <div className={styles.content}>
+          <div className={styles.selectedCharacter}>
+            <button
+              className={`${styles.statusButton} ${
+                selectedCharacter?.status?.toUpperCase() === "DEAD"
+                  ? styles.dead
+                  : ""
+              }`}
+            >
+              {selectedCharacter?.status?.toUpperCase()}
+            </button>
+            <SelectedCharacter selectedCharacter={selectedCharacter} />
+          </div>
           <div className={styles.rightColumn}>
             <SearchBar onSearch={setSearchQuery} />
             <CharacterGrid
