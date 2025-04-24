@@ -21,6 +21,7 @@ export default function CharacterGrid({
 }: CharacterGridProps) {
   const gridRef = useRef<HTMLDivElement>(null);
   const [scrollInterval, setScrollInterval] = useState<NodeJS.Timeout | null>(null);
+  const [showFavorites, setShowFavorites] = useState(false);
 
   const scroll = (direction: 'up' | 'down') => {
     if (gridRef.current) {
@@ -41,6 +42,14 @@ export default function CharacterGrid({
       setScrollInterval(null);
     }
   };
+
+  const toggleFavorites = () => {
+    setShowFavorites((prev) => !prev);
+  };
+
+  const displayedCharacters = showFavorites
+    ? characters.filter((character) => likedCharacters.includes(character.id))
+    : characters;
 
   return (
     <div className={styles.characterGridContainer}>
@@ -65,8 +74,11 @@ export default function CharacterGrid({
           />
         </button>
       </div>
+      <button className={styles.favsButton} onClick={toggleFavorites}>
+        {showFavorites ? 'ALL' : 'FAVS'}
+      </button>
       <div className={styles.characterGrid} ref={gridRef}>
-        {characters.map((character) => (
+        {displayedCharacters.map((character) => (
           <CharacterCard
             key={character.id}
             id={character.id}
