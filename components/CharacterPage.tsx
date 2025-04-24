@@ -1,9 +1,8 @@
-import React, { useRef } from "react";
+import React from "react";
 import styles from "./CharacterPage.module.css";
 import SearchBar from "./SearchBar";
 import SelectedCharacter from "./SelectedCharacter";
 import CharacterGrid from "./CharacterGrid";
-import { IoIosArrowUp } from "react-icons/io";
 import { Character } from "@/types/types";
 
 interface CharacterPageProps {
@@ -29,37 +28,9 @@ export default function CharacterPage({
     character.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
-  const contentRef = useRef<HTMLDivElement>(null);
-
-  const scrollUp = () => {
-    if (contentRef.current) {
-      contentRef.current.scrollBy({ top: -100, behavior: "smooth" });
-    }
-  };
-
-  const scrollDown = () => {
-    if (contentRef.current) {
-      contentRef.current.scrollBy({ top: 100, behavior: "smooth" });
-    }
-  };
-
   return (
     <div className={styles.container}>
       <div className={styles.centralPage}>
-        <div className={styles.scrollButtons}>
-          <button className={styles.scrollButton} onClick={scrollUp}>
-            <IoIosArrowUp className={styles.icon} />
-          </button>
-          <button
-            className={`${styles.scrollButton} ${styles.downButton}`}
-            onClick={scrollDown}
-          >
-            <IoIosArrowUp
-              className={styles.icon}
-              style={{ transform: "rotate(180deg)" }}
-            />
-          </button>
-        </div>
         <div className={styles.content}>
           <div className={styles.selectedCharacter}>
             <button
