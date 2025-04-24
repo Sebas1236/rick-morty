@@ -229,8 +229,8 @@
 
 .favsButton {
   position: fixed;
-  bottom: 10%;
-  right: 20%;
+  bottom: 9.5%;
+  right: 23%;
   background-color: #5B5454;
   color: white;
   border: none;
@@ -238,9 +238,10 @@
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
-  width: 300px;
+  width: 250px;
   z-index: 1000;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 90%);
 }
 
 .favsButton:hover {
